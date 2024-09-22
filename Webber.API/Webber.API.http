@@ -1,0 +1,6 @@
+@Webber.API_HostAddress = http://localhost:5230
+
+GET {{Webber.API_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
