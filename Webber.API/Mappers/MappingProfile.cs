@@ -21,6 +21,17 @@ public class MappingProfile : Profile
         CreateMap<CreateCategoryDto, Category>();
         CreateMap<UpdateCategoryDto, Category>();
 
+      
+        // Order Mappings
+        CreateMap<Order, OrderDto>()
+            .ForMember(dest => dest.ShippingAddress, opt => opt.MapFrom(src => src.ShippingAddress))
+            .ForMember(dest => dest.BillingAddress, opt => opt.MapFrom(src => src.BillingAddress));
+
+        CreateMap<OrderItem, OrderItemDto>().ReverseMap();
+        CreateMap<CreateOrderDto, Order>()
+            .ForMember(dest => dest.ShippingAddress, opt => opt.MapFrom(src => src.ShippingAddress))
+            .ForMember(dest => dest.BillingAddress, opt => opt.MapFrom(src => src.BillingAddress));
+
         // Product Mappings
         CreateMap<Product, ProductDto>()
             .ForMember(dest => dest.CategoryName, opt => opt.MapFrom(src => src.Category.Name));
